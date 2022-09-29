@@ -26,3 +26,9 @@ O
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
 X
 (src/test/java/week5/KdTreeUnitTests.java,c/f/cfda4c4d093aed60d586188d99aaff13685f6a00
+L
+src/main/java/week7/SAP.java,a/3/a3358304c4015e911fcc304c78d09ee4db0e58f6
+P
+ src/main/java/week7/Outcast.java,8/c/8c434666434e6ddad9dc5f25a89c932b10e306ce
+P
+ src/main/java/week7/WordNet.java,c/1/c1b85a6783a55a3c7017833e0797414aad4fc116
