@@ -28,3 +28,7 @@ P
  src/main/java/week7/Outcast.java,8/c/8c434666434e6ddad9dc5f25a89c932b10e306ce
 P
  src/main/java/week7/WordNet.java,c/1/c1b85a6783a55a3c7017833e0797414aad4fc116
+b
+2src/main/java/week5/NearestNeighborVisualizer.java,e/9/e915abedcc506e072b4e1df54df793f20c1683cc
+O
+src/main/java/week5/KdTree.java,c/e/ceaf248238c089acb31332f9dad6d53c28fe2188
