@@ -1,10 +1,5 @@
 package week11;
 
-import edu.princeton.cs.algs4.Quick3string;
-
-import java.util.HashMap;
-import java.util.Map;
-
 public class CircularSuffixArray {
 
 
@@ -18,39 +13,18 @@ public class CircularSuffixArray {
         }
 
         int len = s.length();
-        final String[] suffixArrays = new String[len];
+        final CircularSuffix[] suffix = new CircularSuffix[len];
         indexes = new int[len];
 
         int offset = len;
 
-
-        for (int i = 0; i < suffixArrays.length; i++) {
-            char[] chars = new char[len];
-            for (int j = 0; j < suffixArrays.length; j++) {
-                int index = (j + offset) % len;
-                chars[index] = s.charAt(j);
-            }
-            suffixArrays[i] = String.valueOf(chars);
+        for (int i = 0; i < len; i++) {
+            suffix[i] = new CircularSuffix(s, offset % len);
             offset--;
         }
 
-        final Map<String, Integer> indexMap = new HashMap<>();
-
-        for (int i = 0; i < suffixArrays.length; i++) {
-            String val = suffixArrays[i];
-            indexMap.put(val, i);
-        }
-        Quick3string.sort(suffixArrays);
-        populateIndexes(suffixArrays, indexMap);
-    }
-
-
-    private void populateIndexes(String[] suffixArrays, Map<String, Integer> indexMap) {
-        for (int i = 0; i < suffixArrays.length; i++) {
-            String val = suffixArrays[i];
-            int orig = indexMap.get(val);
-            indexes[i] = orig;
-        }
+        sort(suffix, len);
+        populateIndexes(suffix);
     }
 
     // length of s
@@ -65,6 +39,64 @@ public class CircularSuffixArray {
         }
         return indexes[i];
     }
+
+    private void sort(CircularSuffix[] a, int w) {
+        int n = a.length;
+        int R = 256;   // extend ASCII alphabet size
+        CircularSuffix[] aux = new CircularSuffix[n];
+
+        for (int d = w - 1; d >= 0; d--) {
+            // sort by key-indexed counting on dth character
+
+            // compute frequency counts
+            int[] count = new int[R + 1];
+            for (CircularSuffix suffix : a) count[suffix.charAt(d) + 1]++;
+
+            // compute cumulates
+            for (int r = 0; r < R; r++)
+                count[r + 1] += count[r];
+
+            // move data
+            for (CircularSuffix circularSuffix : a) aux[count[circularSuffix.charAt(d)]++] = circularSuffix;
+
+            // copy back
+            System.arraycopy(aux, 0, a, 0, n);
+        }
+    }
+
+    private static class CircularSuffix {
+
+        private final String originalValue;
+        private final int offset;
+
+        private CircularSuffix(String originalValue, int offset) {
+            this.originalValue = originalValue;
+            this.offset = offset;
+        }
+
+        public char charAt(int index) {
+            return originalValue
+                    .charAt((index + offset) % originalValue.length());
+        }
+
+        public int getOffset() {
+            return offset;
+        }
+
+        @Override
+        public String toString() {
+            return "CircularSuffix{" + "offset=" + offset +
+                    '}';
+        }
+    }
+
+
+    private void populateIndexes(CircularSuffix[] suffixArrays) {
+        for (int i = 0; i < suffixArrays.length; i++) {
+            indexes[i] = suffixArrays[i].getOffset();
+        }
+    }
+
 
     // unit testing (required)
     public static void main(String[] args) {

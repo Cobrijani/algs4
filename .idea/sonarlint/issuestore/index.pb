@@ -42,7 +42,3 @@ V
 pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 ]
 -src/test/java/week11/MoveToFrontUnitTest.java,e/a/eacc986b4e93de6912af64acc19562244228acf9
-Y
-)src/main/java/week11/MoveToFrontTest.java,5/f/5f1e584ae186a029c24ba65e3165d17b951ef37d
-N
-src/main/java/MoveToFront.java,d/d/ddc3b7163136fb28b0319296543c924be0c66d88

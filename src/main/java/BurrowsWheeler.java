@@ -1,9 +1,7 @@
 import edu.princeton.cs.algs4.BinaryStdIn;
 import edu.princeton.cs.algs4.BinaryStdOut;
-import edu.princeton.cs.algs4.LSD;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BurrowsWheeler {
@@ -40,6 +38,7 @@ public class BurrowsWheeler {
     public static void inverseTransform() {
         int first = BinaryStdIn.readInt(32);
         final List<Integer> codes = new ArrayList<>();
+
         while (!BinaryStdIn.isEmpty()) {
             codes.add(BinaryStdIn.readInt(8));
         }
@@ -48,42 +47,31 @@ public class BurrowsWheeler {
     }
 
     private static void inverseTransform(int first, List<Integer> codes) {
-        int[] t = new int[codes.size()];
-        for (int i = 0; i < codes.size(); i++) {
-            t[i] = codes.get(i);
-        }
-        int[] sortedT = Arrays.copyOf(t, t.length);
-        LSD.sort(sortedT);
-
-        int[] next = constructNext(t, sortedT);
+        int[] next = constructNext(codes);
 
         int nextIndex = first;
         for (int i = 0; i < next.length; i++) {
-            BinaryStdOut.write((char) sortedT[nextIndex]);
             nextIndex = next[nextIndex];
+            BinaryStdOut.write((char) codes.get(nextIndex).intValue());
         }
         BinaryStdOut.flush();
     }
 
 
-    private static int[] constructNext(int[] t, int[] firstColumn) {
-        int[] next = new int[t.length];
+    private static int[] constructNext(List<Integer> a) {
+        int N = a.size();
+        int R = 256;   // extend ASCII alphabet size
+        int[] next = new int[N];
 
-        boolean[] marked = new boolean[t.length];
-        Arrays.fill(next, -1);
-        Arrays.fill(marked, false);
-
-        for (int i = 0; i < next.length; i++) {
-            int first = firstColumn[i];
-            for (int j = 0; j < t.length; j++) {
-                int lastChar = t[j];
-
-                if (first == lastChar && !marked[j]) {
-                    next[i] = j;
-                    marked[j] = true;
-                    break;
-                }
-            }
+        int[] count = new int[R + 1];
+        for (int i = 0; i < N; i++) {
+            count[a.get(i) + 1]++;
+        }
+        for (int r = 0; r < R; r++) {
+            count[r + 1] += count[r];
+        }
+        for (int i = 0; i < N; i++) {
+            next[count[a.get(i)]++] = i;
         }
         return next;
     }
