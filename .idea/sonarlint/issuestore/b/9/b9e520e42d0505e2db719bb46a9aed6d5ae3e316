@@ -1,0 +1,18 @@
+
+Š
+java:S1192Z"mDefine a constant instead of duplicating this literal "number of columns must be a positive integer" 3 times.(·•Òç8ÙÂ˜’¾0
+v
+java:S1192b"TDefine a constant instead of duplicating this literal "invalid character: " 3 times.(´‰¦úùÿÿÿÿ8ÚÂ˜’¾0
+‡
+java:S1192Y"jDefine a constant instead of duplicating this literal "number of rows must be a positive integer" 3 times.(®“8ÚÂ˜’¾0
+i
+java:S1192$"GDefine a constant instead of duplicating this literal "DHLNOR" 3 times.(‰ßÆıÿÿÿÿ8ÚÂ˜’¾0
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿ½í³ÿÿÿÿÿ8Úû±¼¾0
+L
+java:S1874K"/Remove this use of "uniform"; it is deprecated.(»Ã¿ı8Ä˜’¾0
+L
+java:S1068"/Remove this unused "BOGGLE_1983" private field.(àóÛ8ºÄ˜’¾0
+N
+java:S1068 "1Remove this unused "BOGGLE_MASTER" private field.(ÑıÙˆ8»Ä˜’¾0
+K
+java:S1068)".Remove this unused "BOGGLE_BIG" private field.(•œ½Ó8»Ä˜’¾0

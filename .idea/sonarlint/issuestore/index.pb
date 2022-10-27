@@ -9,8 +9,6 @@ O
 src/main/java/week4/Solver.java,e/c/eced3d320a611ce0ddf28c4d06bdf0e26fa5d9bd
 N
 src/main/java/week4/Board.java,f/3/f3ed65830da9852eb7065a7a7cba11f97a4efa07
-7
-pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
 Q
 !src/main/java/week5/PointSET.java,6/e/6e9c24a9e1c7dca3f96bb5823d763a9254ee224a
 ^
@@ -32,3 +30,19 @@ b
 2src/main/java/week5/NearestNeighborVisualizer.java,e/9/e915abedcc506e072b4e1df54df793f20c1683cc
 O
 src/main/java/week5/KdTree.java,c/e/ceaf248238c089acb31332f9dad6d53c28fe2188
+S
+#src/main/java/week8/SeamCarver.java,d/5/d53add175ee5a27a76878f4cfada162c045fe40d
+U
+%src/main/java/week10/BoggleBoard.java,b/9/b9e520e42d0505e2db719bb46a9aed6d5ae3e316
+T
+$src/main/java/week10/BoggleGame.java,a/4/a450cd760a0c0cfdb0b69a023c42aef3116c902e
+V
+&src/main/java/week10/BoggleSolver.java,3/4/3421dae14049053829689bdf55bf4e0dccc4a072
+7
+pom.xml,4/4/442292b8a7efeabbe4cc176709b833b1792140ec
+]
+-src/test/java/week11/MoveToFrontUnitTest.java,e/a/eacc986b4e93de6912af64acc19562244228acf9
+Y
+)src/main/java/week11/MoveToFrontTest.java,5/f/5f1e584ae186a029c24ba65e3165d17b951ef37d
+N
+src/main/java/MoveToFront.java,d/d/ddc3b7163136fb28b0319296543c924be0c66d88
