@@ -1,5 +1,8 @@
 package week11;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 public class CircularSuffixArray {
     private static final int R = 256;   // extended ASCII alphabet size
     private static final int CUTOFF = 15;   // cutoff to insertion sort
@@ -69,47 +72,79 @@ public class CircularSuffixArray {
     private static void msdSort(CircularSuffix[] a) {
         int n = a.length;
         CircularSuffix[] aux = new CircularSuffix[n];
-        sort(a, 0, n - 1, 0, aux);
+        sort(a, new SortParams(0, n - 1, 0), aux);
     }
 
     private static int charAt(CircularSuffix s, int d) {
         return s.charAt(d);
     }
 
-    // sort from a[lo] to a[hi], starting at the dth character
-    private static void sort(CircularSuffix[] a, int lo, int hi, int d, CircularSuffix[] aux) {
+    private static void sort(CircularSuffix[] a, SortParams sortParams, CircularSuffix[] aux) {
+        final Deque<SortParams> params = new ArrayDeque<>();
+        params.add(sortParams);
 
-        // cutoff to insertion sort for small subarrays
-        if (hi <= lo + CUTOFF) {
-            insertion(a, lo, hi, d);
-            return;
+        while (!params.isEmpty()) {
+
+            final SortParams p = params.pop();
+
+            int hi = p.hi;
+            int lo = p.lo;
+            int d = p.d;
+
+            if (hi <= lo + CUTOFF) {
+                insertion(a, lo, hi, d);
+            } else {
+                // compute frequency counts
+                int[] count = new int[R + 2];
+                for (int i = lo; i <= hi; i++) {
+                    int c = charAt(a[i], d);
+                    count[c + 2]++;
+                }
+
+                // transform counts to indicies
+                for (int r = 0; r < R + 1; r++)
+                    count[r + 1] += count[r];
+
+                // distribute
+                for (int i = lo; i <= hi; i++) {
+                    int c = charAt(a[i], d);
+                    aux[count[c + 1]++] = a[i];
+                }
+
+                // copy back
+                for (int i = lo; i <= hi; i++)
+                    a[i] = aux[i - lo];
+
+                for (int r = 0; r < R; r++) {
+                    params.push(new SortParams(lo + count[r], lo + count[r + 1] - 1, d + 1));
+                }
+            }
+        }
+    }
+
+    private static class SortParams {
+
+        private final int lo;
+        private final int hi;
+        private final int d;
+
+        public SortParams(int lo, int hi, int d) {
+            this.lo = lo;
+            this.hi = hi;
+            this.d = d;
         }
 
-        // compute frequency counts
-        int[] count = new int[R + 2];
-        for (int i = lo; i <= hi; i++) {
-            int c = charAt(a[i], d);
-            count[c + 2]++;
+        public int getLo() {
+            return lo;
         }
 
-        // transform counts to indicies
-        for (int r = 0; r < R + 1; r++)
-            count[r + 1] += count[r];
-
-        // distribute
-        for (int i = lo; i <= hi; i++) {
-            int c = charAt(a[i], d);
-            aux[count[c + 1]++] = a[i];
+        public int getHi() {
+            return hi;
         }
 
-        // copy back
-        for (int i = lo; i <= hi; i++)
-            a[i] = aux[i - lo];
-
-
-        // recursively sort for each character (excludes sentinel -1)
-        for (int r = 0; r < R; r++)
-            sort(a, lo + count[r], lo + count[r + 1] - 1, d + 1, aux);
+        public int getD() {
+            return d;
+        }
     }
 
 

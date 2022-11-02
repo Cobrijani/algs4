@@ -1,4 +1,0 @@
-
-k	java:S117r"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áž•Õøÿÿÿÿ
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(½ÀÚó8¿Ù¿‹¶0
-a	java:S116"LRename this field "G" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Íýû¢
